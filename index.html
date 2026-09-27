@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PurrfectGroom - Cat Grooming Dashboard</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header class="header">
+            <div class="container nav-container">
+                <a href="#" class="brand">
+                    <div class="brand-icon">🐾</div>
+                    <div class="brand-name">Purrfect<span>Groom</span></div>
+                </a>
+
+                <ul class="nav-menu">
+                    <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                    <li><a href="#layanan" class="nav-link">Layanan</a></li>
+                    <li><a href="#pengumuman" class="nav-link">Pengumuman</a></li>
+                    <li><a href="#ulasan" class="nav-link">Ulasan</a></li>
+                </ul>
+
+                <div class="user-profile-badge">
+                    <div class="user-avatar">🐱</div>
+                    <div class="user-info">
+                        <span class="user-name">Sarah Amanda</span>
+                        <span class="user-pet">Anabul: Milo (Persian)</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <!-- HERO CTA RESERVASI -->
+                <section class="hero-banner" id="dashboard">
+                    <div class="hero-text">
+                        <span class="hero-tag">✨ Layanan Terpercaya Sejak 2021</span>
+                        <h1 class="hero-title">Waktunya Manjakan Kucing Kesayangan Anda</h1>
+                        <p class="hero-desc">
+                            Perawatan higienis tanpa kandang gelap, penanganan lembut bebas stres
+                            oleh groomer bersertifikat, dan ruangan bersuhu sejuk terkontrol.
+                        </p>
+
+                        <div class="reservation-quickbox">
+                            <input type="date" class="input-field" aria-label="Tanggal Grooming" />
+                            <select class="input-field" aria-label="Tipe Kucing">
+                                <option value="">Pilih Tipe Perawatan</option>
+                                <option value="salon">Salon Visit (Antar Sendiri)</option>
+                                <option value="homeservice">
+                                    Home Service (Panggilan ke Rumah)
+                                </option>
+                                <option value="pickup">Jemput-Antar Pet Taxi</option>
+                            </select>
+                            <button type="button" class="btn btn-pink">
+                                📅 Reservasi Sekarang
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual">
+                        <div class="hero-visual-icon">🛁</div>
+                        <div class="hero-visual-text">100% Produk Aman & Bebas Paraben</div>
+                        <p style="font-size: 0.78rem; margin-top: 4px; color: var(--text-muted)">
+                            Sterilisasi alat medis setelah setiap pemakaian
+                        </p>
+                    </div>
+                </section>
+
+                <section class="notice-section" id="pengumuman">
+                    <div class="section-header">
+                        <h2 class="section-title">📢 Papan Pengumuman & Informasi</h2>
+                        <p class="section-subtitle">
+                            Dapatkan info promosi bulanan, tips perawatan anabul, dan jadwal
+                            operasional salon
+                        </p>
+                    </div>
+
+                    <div class="notice-grid">
+                        <!-- Notice 1 -->
+                        <article class="notice-card">
+                            <div>
+                                <div class="notice-badge-row">
+                                    <span class="notice-badge badge-promo">Promo Spesial</span>
+                                    <span class="notice-date">24 Sep 2026</span>
+                                </div>
+                                <h3 class="notice-title">Diskon 20% Paket Spa Jamur</h3>
+                                <p class="notice-desc">
+                                    Dapatkan potongan khusus untuk perawatan jamur & parasit setiap
+                                    hari Selasa dan Rabu. Gunakan kode:
+                                    <strong>BERSIHSEHAT</strong>.
+                                </p>
+                            </div>
+                        </article>
+
+                        <!-- Notice 2 -->
+                        <article class="notice-card">
+                            <div>
+                                <div class="notice-badge-row">
+                                    <span class="notice-badge badge-tips">Tips Perawatan</span>
+                                    <span class="notice-date">22 Sep 2026</span>
+                                </div>
+                                <h3 class="notice-title">Cegah Bulu Menggumpal (Matting)</h3>
+                                <p class="notice-desc">
+                                    Sisir bulu kucing ras berbulu panjang (Persia, Anggora, Maine
+                                    Coon) minimal 5 menit sehari agar tidak mudah gimbal dan kusut.
+                                </p>
+                            </div>
+                        </article>
+
+                        <!-- Notice 3 -->
+                        <article class="notice-card">
+                            <div>
+                                <div class="notice-badge-row">
+                                    <span class="notice-badge badge-info">Operasional</span>
+                                    <span class="notice-date">20 Sep 2026</span>
+                                </div>
+                                <h3 class="notice-title">Jadwal Groomer & Home Service</h3>
+                                <p class="notice-desc">
+                                    Salon buka setiap hari: 09.00 - 18.00 WIB. Khusus layanan home
+                                    service harap konfirmasi H-1 sebelum kedatangan.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="services-section" id="layanan">
+                    <div class="section-header">
+                        <h2 class="section-title">✂️ Pilihan Paket Grooming</h2>
+                        <p class="section-subtitle">
+                            Layanan menyeluruh dengan shampoo premium yang disesuaikan dengan
+                            kondisi kulit kucing
+                        </p>
+                    </div>
+
+                    <div class="services-grid">
+                        <!-- Card 1 -->
+                        <div class="service-card">
+                            <div class="service-icon-box">🧼</div>
+                            <h3 class="service-name">Basic Bath & Dry</h3>
+                            <div class="service-time">⏱️ Durasi: ~45 Menit</div>
+                            <div class="service-price">Rp 75.000 <span>/ sesi</span></div>
+                            <ul class="feature-list">
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Mandi shampoo hipoalergenik
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Potong kuku & bersihkan
+                                    telinga
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Blow dry lembut (Low Noise)
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Parfum wangi lembut anabul
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-outline-pink">Pilih Paket</button>
+                        </div>
+
+                        <!-- Card 2: Popular -->
+                        <div class="service-card popular">
+                            <div class="popular-ribbon">Paling Diminati</div>
+                            <div class="service-icon-box">🛡️</div>
+                            <h3 class="service-name">Anti-Kutu & Jamur</h3>
+                            <div class="service-time">⏱️ Durasi: ~60 Menit</div>
+                            <div class="service-price">Rp 125.000 <span>/ sesi</span></div>
+                            <ul class="feature-list">
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Seluruh fasilitas Basic
+                                    Bath
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Shampoo medicated belerang
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Penyisiran teliti telur
+                                    kutu
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Salep antiseptik untuk
+                                    jamur
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-pink">Pilih Paket</button>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="service-card">
+                            <div class="service-icon-box">🦁</div>
+                            <h3 class="service-name">Lion Cut & Styling</h3>
+                            <div class="service-time">⏱️ Durasi: ~75 Menit</div>
+                            <div class="service-price">Rp 160.000 <span>/ sesi</span></div>
+                            <ul class="feature-list">
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Seluruh fasilitas Basic
+                                    Bath
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Cukur model singa / teddy
+                                    bear
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Perapihan bulu telapak kaki
+                                    (paw)
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Sanitasi area sanitari/anus
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-outline-pink">Pilih Paket</button>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="service-card">
+                            <div class="service-icon-box">🌸</div>
+                            <h3 class="service-name">Royal Spa Aromaterapi</h3>
+                            <div class="service-time">⏱️ Durasi: ~90 Menit</div>
+                            <div class="service-price">Rp 210.000 <span>/ sesi</span></div>
+                            <ul class="feature-list">
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Mandi air hangat chamomile
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Pijat relaksasi anti-stres
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Masker bulu halus & serum
+                                    kilau
+                                </li>
+                                <li class="feature-item">
+                                    <span class="feature-check">✔</span> Snack catnip organik gratis
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-outline-pink">Pilih Paket</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="reviews-section" id="ulasan">
+                    <div class="section-header">
+                        <h2 class="section-title">⭐ Ulasan Pemilik Kucing</h2>
+                        <p class="section-subtitle">
+                            Pengalaman nyata dari cat pawrents yang telah mempercayakan anabulnya di
+                            PurrfectGroom
+                        </p>
+                    </div>
+
+                    <div class="reviews-layout">
+                        <!-- Kolom Testimoni -->
+                        <div class="review-cards-col">
+                            <!-- Review 1 -->
+                            <div class="review-item">
+                                <div class="review-top">
+                                    <div class="reviewer-meta">
+                                        <div class="reviewer-avatar">😸</div>
+                                        <div>
+                                            <div class="reviewer-name">Dina Safitri</div>
+                                            <div class="reviewer-pet">
+                                                Pemilik "Coki" (British Shorthair)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                                <p class="review-comment">
+                                    "Biasanya Coki gampang marah dan hissing kalau dimandiin, tapi
+                                    di sini groomernya sabar banget! Bulunya wangi tahan sampai 1
+                                    minggu."
+                                </p>
+                            </div>
+
+                            <!-- Review 2 -->
+                            <div class="review-item">
+                                <div class="review-top">
+                                    <div class="reviewer-meta">
+                                        <div class="reviewer-avatar">😻</div>
+                                        <div>
+                                            <div class="reviewer-name">Reza Pratama</div>
+                                            <div class="reviewer-pet">
+                                                Pemilik "Mochi" (Persian Peaknose)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                                <p class="review-comment">
+                                    "Paket Anti-Kutu sangat efektif! Telinga Mochi dibersihkan
+                                    sampai tuntas dan kuku dipotong rapi tanpa berdarah. Sangat
+                                    direkomendasikan!"
+                                </p>
+                            </div>
+
+                            <!-- Review 3 -->
+                            <div class="review-item">
+                                <div class="review-top">
+                                    <div class="reviewer-meta">
+                                        <div class="reviewer-avatar">😽</div>
+                                        <div>
+                                            <div class="reviewer-name">Farah Nabila</div>
+                                            <div class="reviewer-pet">
+                                                Pemilik "Simba" (Domestic Short Hair)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                                <p class="review-comment">
+                                    "Tempatnya bersih, wangi, dan tidak ada bau anjing sehingga
+                                    kucing tidak ketakutan. Home service-nya juga on-time dan
+                                    profesional."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Kolom Form Mockup -->
+                        <div class="comment-form-box">
+                            <h3 class="form-title">Tinggalkan Ulasan</h3>
+                            <p class="form-desc">
+                                Ceritakan kepuasan Anda setelah sesi grooming anabul:
+                            </p>
+
+                            <form action="#" onsubmit="return false;">
+                                <div class="form-group">
+                                    <label class="form-label">Nama Lengkap</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Contoh: Sarah Amanda"
+                                        value="Sarah Amanda"
+                                    />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Nama Kucing & Ras</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Contoh: Milo (Persian)"
+                                    />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Beri Bintang Kepuasan</label>
+                                    <div class="rating-picker">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span
+                                        ><span>★</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Ulasan & Komentar</label>
+                                    <textarea
+                                        class="form-control"
+                                        placeholder="Tuliskan pengalaman Anda..."
+                                    ></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-pink" style="width: 100%">
+                                    Kirim Komentar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <aside class="floating-chat-widget">
+            <div class="chat-pill">
+                <span class="status-dot"></span>
+                <span>Groomer Online (Tanya Jadwal)</span>
+            </div>
+            <button type="button" class="chat-btn" aria-label="Buka Chat Konsultasi">
+                💬
+                <span class="chat-badge-count">1</span>
+            </button>
+        </aside>
+
+        <footer class="footer">
+            <div class="container">
+                <p>
+                    © 2026 <strong>PurrfectGroom</strong>. Solusi Perawatan Kucing Higienis & Bebas
+                    Stres.
+                </p>
+                <p style="margin-top: 4px; font-size: 0.8rem">
+                    Dibuat dengan HTML & CSS murni tanpa framework.
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>
