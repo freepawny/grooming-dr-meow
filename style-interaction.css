@@ -1,0 +1,240 @@
+/* Sprint 02 - Gaya tambahan untuk interaksi JavaScript (Task 01, 02, 03) */
+
+/* Task 01: Penanda elemen yang diubah oleh JavaScript */
+.js-active {
+    outline: 2px solid var(--pink-border);
+    outline-offset: 2px;
+}
+
+/* Task 03: Penanda paket yang sedang dipilih */
+.service-card.is-dipilih {
+    border-color: var(--pink-primary);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Task 02: Kotak pencarian paket */
+.package-search {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.package-search-input {
+    max-width: 320px;
+    width: 100%;
+}
+
+.package-search-empty {
+    font-size: 0.85rem;
+    color: var(--pink-dark);
+    font-weight: 700;
+}
+
+/* Task 02: Ringkasan reservasi langsung */
+.reservation-summary {
+    margin-top: 12px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--pink-dark);
+    background-color: var(--pink-soft);
+    border: 1px solid var(--pink-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    min-height: 38px;
+}
+
+/* Task 02: Bintang rating interaktif */
+.rating-picker .star {
+    transition:
+        transform 0.15s,
+        color 0.15s;
+    user-select: none;
+}
+
+.rating-picker .star:hover {
+    transform: scale(1.15);
+}
+
+.rating-picker .star.active {
+    color: var(--pink-primary);
+}
+
+/* Task 03: Overlay detail paket */
+.package-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(30, 41, 59, 0.55);
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.package-overlay[hidden] {
+    display: none;
+}
+
+.package-panel {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-hover);
+    width: 100%;
+    max-width: 520px;
+    max-height: 88vh;
+    overflow-y: auto;
+    border: 1px solid var(--pink-border);
+}
+
+.package-header {
+    background-color: var(--pink-primary);
+    color: var(--color-white);
+    padding: 20px 24px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    position: relative;
+}
+
+.package-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    opacity: 0.85;
+}
+
+.package-title {
+    font-size: 1.25rem;
+    color: var(--color-white);
+    margin-top: 4px;
+}
+
+.package-close {
+    background-color: var(--color-white);
+    color: var(--pink-primary);
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-full);
+    font-size: 1.1rem;
+    font-weight: 900;
+    cursor: pointer;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.package-close:hover {
+    background-color: var(--pink-soft);
+}
+
+.package-body {
+    padding: 22px 24px 24px;
+}
+
+.package-meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.package-price {
+    color: var(--pink-primary);
+}
+
+.package-features {
+    list-style: none;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.package-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.88rem;
+    color: var(--text-main);
+}
+
+.package-form-title {
+    font-size: 0.95rem;
+    color: var(--pink-dark);
+    margin-bottom: 12px;
+}
+
+.package-success {
+    background-color: #ecfdf5;
+    border: 1px solid var(--success-green);
+    color: #065f46;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-bottom: 16px;
+}
+
+.package-success[hidden] {
+    display: none;
+}
+
+/* Toast: notifikasi aksi berhasil dari JavaScript */
+.toast-stack {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 1300;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background-color: var(--text-main);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: 12px 18px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-hover);
+    border-left: 4px solid var(--success-green);
+    max-width: 320px;
+}
+
+.toast.error {
+    border-left-color: var(--pink-primary);
+}
+
+@media (max-width: 680px) {
+    .package-overlay {
+        padding: 12px;
+        align-items: flex-end;
+    }
+
+    .package-panel {
+        max-height: 92vh;
+    }
+
+    .package-search-input {
+        max-width: 100%;
+    }
+
+    .toast-stack {
+        left: 12px;
+        right: 12px;
+        bottom: 90px;
+    }
+
+    .toast {
+        max-width: none;
+    }
+}

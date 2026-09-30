@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>PurrfectGroom - Cat Grooming Dashboard</title>
         <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="style-interaction.css" />
     </head>
     <body>
         <header class="header">
@@ -37,7 +38,9 @@
                 <section class="hero-banner" id="dashboard">
                     <div class="hero-text">
                         <span class="hero-tag">✨ Layanan Terpercaya Sejak 2021</span>
-                        <h1 class="hero-title">Waktunya Manjakan Kucing Kesayangan Anda</h1>
+                        <h1 class="hero-title" id="judul">
+                            Waktunya Manjakan Kucing Kesayangan Anda
+                        </h1>
                         <p class="hero-desc">
                             Perawatan higienis tanpa kandang gelap, penanganan lembut bebas stres
                             oleh groomer bersertifikat, dan ruangan bersuhu sejuk terkontrol.
@@ -53,9 +56,16 @@
                                 </option>
                                 <option value="pickup">Jemput-Antar Pet Taxi</option>
                             </select>
-                            <button type="button" class="btn btn-pink">
+                            <button
+                                type="button"
+                                class="btn btn-pink"
+                                id="btn-reservasi"
+                            >
                                 📅 Reservasi Sekarang
                             </button>
+                            <p class="reservation-summary" id="ringkasan-reservasi">
+                                Pilih tanggal dan tipe perawatan untuk melihat ringkasan.
+                            </p>
                         </div>
                     </div>
 
@@ -133,9 +143,21 @@
                             Layanan menyeluruh dengan shampoo premium yang disesuaikan dengan
                             kondisi kulit kucing
                         </p>
+                        <div class="package-search">
+                            <input
+                                type="search"
+                                class="input-field package-search-input"
+                                id="cari-paket"
+                                placeholder="🔍 Cari paket grooming..."
+                                aria-label="Cari paket grooming"
+                            />
+                            <p class="package-search-empty" id="hasil-cari" hidden>
+                                Paket tidak ditemukan. Coba kata kunci lain.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="services-grid">
+                    <div class="services-grid" id="daftar-paket">
                         <!-- Card 1 -->
                         <div class="service-card">
                             <div class="service-icon-box">🧼</div>
@@ -157,7 +179,12 @@
                                     <span class="feature-check">✔</span> Parfum wangi lembut anabul
                                 </li>
                             </ul>
-                            <button type="button" class="btn btn-outline-pink">Pilih Paket</button>
+                            <button
+                                type="button"
+                                class="btn btn-outline-pink btn-pilih-paket"
+                            >
+                                Pilih Paket
+                            </button>
                         </div>
 
                         <!-- Card 2: Popular -->
@@ -184,7 +211,7 @@
                                     jamur
                                 </li>
                             </ul>
-                            <button type="button" class="btn btn-pink">Pilih Paket</button>
+                            <button type="button" class="btn btn-pink btn-pilih-paket">Pilih Paket</button>
                         </div>
 
                         <!-- Card 3 -->
@@ -210,7 +237,12 @@
                                     <span class="feature-check">✔</span> Sanitasi area sanitari/anus
                                 </li>
                             </ul>
-                            <button type="button" class="btn btn-outline-pink">Pilih Paket</button>
+                            <button
+                                type="button"
+                                class="btn btn-outline-pink btn-pilih-paket"
+                            >
+                                Pilih Paket
+                            </button>
                         </div>
 
                         <!-- Card 4 -->
@@ -234,7 +266,12 @@
                                     <span class="feature-check">✔</span> Snack catnip organik gratis
                                 </li>
                             </ul>
-                            <button type="button" class="btn btn-outline-pink">Pilih Paket</button>
+                            <button
+                                type="button"
+                                class="btn btn-outline-pink btn-pilih-paket"
+                            >
+                                Pilih Paket
+                            </button>
                         </div>
                     </div>
                 </section>
@@ -322,7 +359,7 @@
                                 Ceritakan kepuasan Anda setelah sesi grooming anabul:
                             </p>
 
-                            <form action="#" onsubmit="return false;">
+                            <form action="#" id="form-ulasan" novalidate>
                                 <div class="form-group">
                                     <label class="form-label">Nama Lengkap</label>
                                     <input
@@ -344,10 +381,19 @@
 
                                 <div class="form-group">
                                     <label class="form-label">Beri Bintang Kepuasan</label>
-                                    <div class="rating-picker">
-                                        <span>★</span><span>★</span><span>★</span><span>★</span
-                                        ><span>★</span>
+                                    <div class="rating-picker" id="rating-picker">
+                                        <span class="star" data-value="1">★</span>
+                                        <span class="star" data-value="2">★</span>
+                                        <span class="star" data-value="3">★</span>
+                                        <span class="star" data-value="4">★</span>
+                                        <span class="star" data-value="5">★</span>
                                     </div>
+                                    <p
+                                        class="package-search-empty"
+                                        id="rating-label"
+                                        style="margin-top: 6px"
+                                        hidden
+                                    ></p>
                                 </div>
 
                                 <div class="form-group">
@@ -358,7 +404,7 @@
                                     ></textarea>
                                 </div>
 
-                                <button type="submit" class="btn btn-pink" style="width: 100%">
+                                <button type="submit" class="btn btn-pink" id="btn-kirim-ulasan" style="width: 100%">
                                     Kirim Komentar
                                 </button>
                             </form>
@@ -390,5 +436,7 @@
                 </p>
             </div>
         </footer>
+
+        <script src="script.js"></script>
     </body>
 </html>
