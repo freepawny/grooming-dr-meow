@@ -1,0 +1,36 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family-main);
+    background-color: var(--color-background);
+    color: var(--color-text-dark);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Catatan: aturan img{max-width:100%; display:block} sengaja tidak
+   ditulis ulang di sini. Tailwind preflight sudah mendefinisikannya
+   di @layer base, sehingga utility seperti max-w-none tetap bisa
+   menimpanya. Aturan tanpa @layer justru selalu menang atas
+   utility Tailwind. */
+
+button,
+a,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}

@@ -1,0 +1,6 @@
+[
+    { "id": "basic", "name": "Basic Grooming", "price": 85000 },
+    { "id": "full", "name": "Full Grooming", "price": 175000 },
+    { "id": "kitten", "name": "Grooming Kitten", "price": 75000 },
+    { "id": "addon", "name": "Add-on Service", "price": 35000 }
+]
