@@ -7,6 +7,9 @@
     "build": "tailwindcss -i ./src/input.css -o ./src/output.css --minify",
     "start": "node server.js"
   },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
     "tailwindcss": "^4.3.3"
