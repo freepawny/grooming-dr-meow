@@ -1,0 +1,126 @@
+RANGKUMAN IMPLEMENTASI BACKEND PHP PROSEDURAL
+===============================================
+
+Project : grooming-dr-meow
+Branch  : feat/backend-implementation (backup: backup/feat-backend-implementation-express)
+Tanggal : 21 Oktober 2026
+Tujuan  : Migrasi backend dari Express (Node.js) ke PHP Prosedural sesuai materi week5.pptx & php_learning_roadmap.md
+
+1. LATAR BELAKANG
+-----------------
+Berdasarkan materi Pertemuan 5 "From Client-Side to Server-Side" dan php_learning_roadmap.md,
+dilakukan migrasi backend ke PHP murni prosedural dengan menerapkan konsep:
+- Server Setup (php -S)
+- Variables
+- Conditional (if/else)
+- Loop (foreach/for)
+- Function (dengan argumen & return value)
+- Output (JSON)
+
+Pendekatan yang digunakan: Karpathy Guidelines (simpel, surgical change, jelas tujuan),
+Clean Code, dan modularisasi prosedural sederhana menggunakan include/require.
+
+2. MAPPING PPT/ROADMAP -> IMPLEMENTASI PHP
+------------------------------------------
+| Konsep | Implementasi | Keterangan |
+|---|---|---|
+| Server Setup | php -S localhost:8000 -t backend | Menjalankan local server PHP (built-in server) |
+| Variables | $variable, define() di config | Digunakan untuk path, konstanta, data |
+| Conditional (if/else/switch) | validasi di includes/functions.php & api/bookings.php | Validasi field wajib, validasi pickupAddress untuk Antar-Jemput |
+| Loop (foreach) | foreach untuk validasi required fields & iterasi data | Diterapkan secara eksplisit |
+| Function | includes/functions.php, includes/helpers.php | Fungsi prosedural dengan argumen & return value (validateBookingInput, createBookingId, processBooking, appendBooking) |
+| Output | sendJson() dengan header application/json | Menghasilkan output JSON untuk konsumsi frontend React |
+
+3. STRUKTUR FOLDER BACKEND (PHP PROSEDURAL)
+------------------------------------------
+backend/
+├── api/
+│   ├── health.php      -> GET /api/health
+│   ├── services.php    -> GET /api/services
+│   └── bookings.php    -> GET/POST /api/bookings
+├── config/
+│   └── config.php      -> Konstanta path (APP_ROOT, PROJECT_ROOT, DATA_DIR)
+├── includes/
+│   ├── helpers.php     -> Fungsi pembantu (readJsonFile, writeJsonFile, sendJson, getJsonInput, trimValue)
+│   └── functions.php   -> Logika bisnis prosedural (validateBookingInput, createBookingId, processBooking, appendBooking)
+└── index.php           -> Router sederhana untuk request /api/*
+
+Catatan: Folder data/ TETAP di root project (/data/WEB grooming/data/) agar tidak duplikasi data JSON yang ada.
+
+4. FILE YANG DIBUAT / DIUBAH
+----------------------------
+DIBUAT:
+- backend/config/config.php
+- backend/includes/helpers.php
+- backend/includes/functions.php
+- backend/api/health.php
+- backend/api/services.php
+- backend/api/bookings.php
+- backend/index.php
+- RANGKUMAN_IMPLEMENTASI_BACKEND_PHP.txt (file ini)
+
+DIUBAH:
+- frontend/vite.config.js  -> proxy target diganti dari http://localhost:3000 ke http://localhost:8000
+- package.json             -> ditambah script "start:php": "php -S localhost:8000 -t backend"
+
+TIDAK DIHAPUS:
+- server.js (Express lama) tetap dibiarkan sebagai backup (tersedia juga di branch backup/feat-backend-implementation-express)
+
+5. ENDPOINT YANG TERSEDIA
+-------------------------
+| Method | Endpoint | Fungsi | Status |
+|---|---|---|---|
+| GET | /api/health | Cek status server | 200 {success:true, data:"ok"} |
+| GET | /api/services | Ambil daftar layanan dari data/services.json | 200 {success:true, data:[...]} |
+| GET | /api/bookings | Ambil daftar booking dari data/bookings.json | 200 {success:true, data:[...]} |
+| POST | /api/bookings | Tambah booking baru (validasi seperti versi Express) | 201 {success:true, data:{...}} / 400 jika error validasi |
+
+Validasi POST (persis seperti server.js):
+- Field wajib: customerName, customerPhone, service, bookingDate, bookingTime, catName, arrivalMethod
+- Jika arrivalMethod = "Antar-Jemput", pickupAddress wajib diisi
+- ID booking: BK- + base36 timestamp + 4 hex random
+- createdAt: format ISO (date('c'))
+- Data disimpan ke data/bookings.json (append)
+
+6. CARA MENJALANKAN
+-------------------
+Langkah 1: Jalankan backend PHP
+$ cd "/data/WEB grooming"
+$ npm run start:php
+atau langsung:
+$ php -S localhost:8000 -t backend
+
+Server berjalan di: http://localhost:8000
+
+Langkah 2: Jalankan frontend (di terminal terpisah)
+$ cd "/data/WEB grooming/frontend"
+$ npm run dev
+
+Frontend berjalan di: http://localhost:5173
+Proxy /api akan mengarah ke http://localhost:8000
+
+Verifikasi cepat:
+$ curl http://localhost:8000/api/health
+$ curl http://localhost:8000/api/services
+
+7. CHECKLIST PEMBELAJARAN (sesuai php_learning_roadmap.md)
+---------------------------------------------------------
+Target Learning:
+[✓] Server Setup: PHP dapat dijalankan di local server (php -S)
+[✓] Variables: Menggunakan variabel PHP
+[✓] Control Flow: Menggunakan conditional (if/else)
+[✓] Loops: Menggunakan loop (foreach)
+[✓] Functions: Membuat function dengan argumen & return value
+[✓] Output: Menghasilkan output PHP (JSON)
+
+Tasks:
+[✓] Task 1: Create PHP Page/Endpoint - Membuat endpoint PHP dasar, bisa diakses via local server
+[✓] Task 2: Process Data with PHP - Validasi menggunakan variabel, conditional, loop untuk memproses data
+[✓] Task 3: Build Dynamic Server-Side Content - Menggunakan function untuk memproses & menghasilkan output JSON dinamis
+
+8. CATATAN
+----------
+- Perilaku API dijaga persis sama seperti versi Express sebelumnya (format response, validasi, struktur booking)
+- Menggunakan gaya prosedural eksplisit sesuai materi PPT week5
+- Modularisasi sederhana dengan include/require (mudah dipahami untuk pembelajaran)
+- Backup tersedia: git branch backup/feat-backend-implementation-express
