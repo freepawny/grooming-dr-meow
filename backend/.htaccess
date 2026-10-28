@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Handle API routes
+RewriteRule ^api/(.*)$ index.php [L]
+
+# Handle MVC routes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index_mvc_integrated.php?url=$1 [QSA,L]
