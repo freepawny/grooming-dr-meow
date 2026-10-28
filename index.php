@@ -1,9 +1,15 @@
 <?php
-// index.php (router sederhana di dalam folder backend)
-// Menangani request ke /api/* seperti pola routing prosedural
+// index.php (router utama - terintegrasi MVC di root)
+
+// Define paths for MVC structure
+define('APP_ROOT', __DIR__);
+define('CORE_ROOT', __DIR__ . '/core');
+define('APP_PATH', __DIR__ . '/app');
+define('PUBLIC_PATH', __DIR__ . '/public');
 
 require_once __DIR__ . '/includes/helpers.php';
 
+// Route API requests
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $scriptName = $_SERVER['SCRIPT_NAME'];
 
@@ -47,7 +53,6 @@ if (strpos($uri, '/api/') === 0) {
     exit;
 }
 
-// Default untuk akses non-api
-http_response_code(404);
-header('Content-Type: text/plain; charset=utf-8');
-echo "Not Found";
+// Untuk non-API routes, gunakan MVC
+require_once __DIR__ . '/index_mvc.php';
+exit;

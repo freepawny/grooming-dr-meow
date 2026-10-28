@@ -6,6 +6,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $this->render('app', array('title' => 'Grooming Dr. Meow - Home'));
+        $this->render('app', array('title' => 'Grooming Dr. Meow'));
     }
 }

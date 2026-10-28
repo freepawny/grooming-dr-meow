@@ -13,6 +13,13 @@
             echo '<link rel="stylesheet" href="/app/Views/assets/css/' . htmlspecialchars($cssName, ENT_QUOTES, 'UTF-8') . '">' . "\n";
         }
     }
+    // Load base CSS
+    if (file_exists(__DIR__ . '/../assets/index.css')) {
+        echo '<link rel="stylesheet" href="/app/Views/assets/index.css">' . "\n";
+    }
+    if (file_exists(__DIR__ . '/../assets/base.css')) {
+        echo '<link rel="stylesheet" href="/app/Views/assets/base.css">' . "\n";
+    }
     ?>
 </head>
 <body>
@@ -23,17 +30,9 @@
     ?>
     
     <?php 
-    // Load JS files from assets
-    $jsFiles = glob(__DIR__ . '/../assets/*.tsx');
-    if (!$jsFiles) {
-        $jsFiles = glob(__DIR__ . '/../assets/*.js');
-    }
-    if ($jsFiles) {
-        foreach ($jsFiles as $jsFile) {
-            if (basename($jsFile) === 'main.tsx') {
-                echo '<script type="module" src="/app/Views/assets/' . htmlspecialchars(basename($jsFile), ENT_QUOTES, 'UTF-8') . '"></script>' . "\n";
-            }
-        }
+    // Load main.tsx as module
+    if (file_exists(__DIR__ . '/../assets/main.tsx')) {
+        echo '<script type="module" src="/app/Views/assets/main.tsx"></script>' . "\n";
     }
     ?>
 </body>

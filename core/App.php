@@ -10,7 +10,7 @@ class App
     {
         $url = $this->parseUrl();
         
-        // Handle API routes separately - let them be handled by api folder
+        // Handle API routes separately
         if (isset($url[0]) && $url[0] === 'api') {
             return;
         }
