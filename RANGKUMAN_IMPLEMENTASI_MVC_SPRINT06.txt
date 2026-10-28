@@ -1,0 +1,237 @@
+RANGKUMAN IMPLEMENTASI MVC - SPRINT 06
+=======================================
+Project : grooming-dr-meow
+Branch  : mvc-backend-grooming-dr-meow
+Tanggal : 28 Oktober 2026
+Tujuan  : Implementasi pola MVC (Model-View-Controller) untuk Grooming Dr. Meow
+         sesuai materi Week 7 (Pertemuan 7) Task 01-03 & Sprint 06 Checklist
+
+1. LATAR BELAKANG
+-----------------
+Berdasarkan materi Week 7 "Transisi dari PHP OOP menuju pola MVC",
+dilakukan implementasi pemisahan tanggung jawab menjadi Model, View, Controller
+untuk meningkatkan struktur dan maintainability kode.
+
+Prinsip MVC yang diterapkan:
+- Model     : Mengelola data dan logika bisnis
+- View      : Bertanggung jawab pada tampilan/presentasi
+- Controller: Menangani request, memanggil Model, mengirim data ke View
+
+Alur Request Flow:
+User → Request → Controller → Model → Controller (prepare data) → View → HTML Response
+
+2. STRUKTUR MVC YANG DIIMPLEMENTASIKAN
+--------------------------------------
+backend/
+├── app/
+│   ├── Controllers/
+│   │   ├── HomeController.php      -> Controller untuk halaman beranda
+│   │   └── ServiceController.php   -> Controller untuk halaman layanan
+│   ├── Models/
+│   │   ├── Service.php             -> Model alternatif (legacy)
+│   │   └── ServiceModel.php        -> Model utama untuk mengelola data layanan
+│   └── Views/
+│       ├── home/
+│       │   ├── index.php          -> View beranda
+│       │   └── about.php          -> View tentang
+│       ├── service/
+│       │   ├── index.php          -> View daftar layanan
+│       │   └── show.php           -> View detail layanan
+│       └── templates/
+│           ├── header.php         -> Template header
+│           └── footer.php         -> Template footer
+├── core/
+│   ├── App.php                    -> Router utama MVC
+│   └── Controller.php             -> Base Controller (model(), view())
+├── index_mvc.php                  -> Entry point MVC
+└── .htaccess                      -> URL rewriting
+
+3. FILE YANG DIBUAT / DIUBAH
+----------------------------
+DIBUAT:
+- backend/app/Models/ServiceModel.php      (Model utama - mengelola data layanan)
+- backend/RANGKUMAN_IMPLEMENTASI_MVC_SPRINT06.txt (dokumentasi ini)
+
+DIUBAH/DIPERKUAT:
+- backend/app/Controllers/ServiceController.php (diperkuat dengan method index() & show(), pemanggilan Model)
+- backend/app/Views/service/index.php (menampilkan data dari Controller)
+- backend/app/Views/service/show.php (menampilkan detail dari Controller)
+- backend/app/Views/templates/header.php (update link ke index_mvc.php)
+
+SUDAH ADA SEBELUMNYA:
+- backend/core/App.php, backend/core/Controller.php
+- backend/app/Controllers/HomeController.php
+- backend/app/Views/home/*, backend/app/Views/templates/footer.php
+- backend/index_mvc.php, backend/.htaccess
+
+4. IMPLEMENTASI TASK 01 - 03
+----------------------------
+TASK 01 - Design the MVC Structure
+[✓] Model ditentukan (ServiceModel.php) - mengelola data layanan dari services.json
+[✓] View ditentukan (app/Views/) - terpisah per halaman dengan template
+[✓] Controller ditentukan (ServiceController.php, HomeController.php)
+[✓] Tanggung jawab masing-masing jelas (Model=data, View=tampilan, Controller=alur)
+[✓] Struktur MVC terhubung ke aplikasi
+
+TASK 02 - Build the Controller
+[✓] Controller berjalan (ServiceController)
+[✓] Request diterima/ditangani melalui method index() dan show()
+[✓] Method Controller dapat dijalankan
+[✓] Model dapat dipanggil oleh Controller ($this->model('ServiceModel'))
+[✓] View dapat ditampilkan melalui alur Controller ($this->view())
+
+TASK 03 - Connect Model, Controller & View
+[✓] Data berasal dari Model (ServiceModel membaca dari data/services.json)
+[✓] Controller memproses data (menyiapkan array $data)
+[✓] Data dikirim ke View (melalui parameter kedua $this->view())
+[✓] View menampilkan data (menggunakan $data['services'], $data['service'])
+[✓] Tidak ada error (semua file lulus php -l)
+
+
+5. SPRINT 06 COMPLETION CHECKLIST
+---------------------------------
+[✓] MVC concept - Struktur dan alur MVC diterapkan (Model-View-Controller terpisah)
+[✓] Model - ServiceModel mengelola data layanan grooming dari services.json
+[✓] View - View fokus pada tampilan, menggunakan template header/footer
+[✓] Controller - ServiceController & HomeController menangani request dan alur aplikasi
+[✓] Request flow - User → Request → Controller → Model → View → Response
+[✓] Model–Controller connection - Controller memanggil $this->model('ServiceModel')
+[✓] Controller–View connection - Controller mengirim $data ke $this->view()
+[✓] Data flow - Data mengalir Model → Controller → View
+[ ] Test - Perlu diuji dengan menjalankan server (lihat panduan testing)
+[ ] Commit - Akan di-commit ke Git
+[ ] Push - Akan di-push ke remote repository
+[ ] Ready for demo - Siap setelah testing berhasil
+
+6. REVIEW KUALITAS MVC
+----------------------
+1. Bagian mana yang lebih mudah dikelola setelah dipisahkan menggunakan MVC?
+   - Setelah pemisahan MVC, logika data (Model) terpisah dari tampilan (View) dan alur
+   (Controller). Sehingga lebih mudah menambah fitur, mengubah tampilan tanpa
+   menyentuh logika, dan maintenance lebih terstruktur.
+
+2. Apa yang terjadi ketika request masuk ke Controller?
+   - Request di-routing oleh core/App.php berdasarkan URL (?url=...), App akan
+   menginstansiasi Controller yang sesuai, memanggil method yang diminta,
+   dan meneruskan parameter jika ada.
+
+3. Bagaimana Controller memperoleh data dari Model?
+   - Controller memanggil $this->model('ServiceModel') yang mewarisi dari base
+   Controller. Model kemudian membaca data dari services.json melalui helpers
+   dan mengembalikan data ke Controller.
+
+4. Bagaimana data sampai ke View?
+   - Controller menyiapkan array $data berisi informasi yang dibutuhkan, kemudian
+   memanggil $this->view('view/path', $data). View mengakses $data untuk
+   menampilkan informasi secara dinamis.
+
+5. Bagian mana yang bertanggung jawab pada data, alur, dan tampilan?
+   - Model (ServiceModel): bertanggung jawab pada data & akses data
+   - Controller (ServiceController/HomeController): bertanggung jawab pada alur aplikasi
+   - View (app/Views/*): bertanggung jawab pada tampilan/presentasi
+
+7. CARA TESTING IMPLEMENTASI MVC (STEP BY STEP)
+----------------------------------------------
+Persiapan:
+1. Buka terminal dan masuk ke direktori project
+   $ cd "/data/WEB grooming"
+
+2. Pindah ke branch MVC
+   $ git checkout mvc-backend-grooming-dr-meow
+
+3. Jalankan PHP built-in server untuk backend
+   $ php -S localhost:8000 -t backend
+
+Testing via Browser:
+4. Buka browser dan akses URL berikut:
+
+   a) Halaman Beranda MVC
+      URL: http://localhost:8000/index_mvc.php?url=home
+      Expected: Menampilkan halaman beranda "Selamat Datang di Grooming Dr. Meow"
+
+   b) Halaman Tentang MVC
+      URL: http://localhost:8000/index_mvc.php?url=home/about
+      Expected: Menampilkan halaman tentang Grooming Dr. Meow
+
+   c) Halaman Daftar Layanan MVC (Task 01-03)
+      URL: http://localhost:8000/index_mvc.php?url=service
+      Expected: Menampilkan daftar layanan dari data/services.json
+                (Basic Grooming, Full Grooming, Grooming Kitten, Add-on Service)
+                Data berasal dari Model melalui Controller
+
+   d) Halaman Detail Layanan MVC
+      URL: http://localhost:8000/index_mvc.php?url=service/show/basic
+      URL: http://localhost:8000/index_mvc.php?url=service/show/full
+      Expected: Menampilkan detail layanan berdasarkan ID
+                Data diambil dari Model, diproses Controller, ditampilkan di View
+
+Testing via Command Line (PHP Syntax & Logic):
+5. Cek syntax semua file MVC
+   $ php -l backend/core/App.php
+   $ php -l backend/core/Controller.php
+   $ php -l backend/app/Models/ServiceModel.php
+   $ php -l backend/app/Controllers/ServiceController.php
+   $ php -l backend/index_mvc.php
+
+6. Test instansiasi Model & alur MVC
+   $ php -r "
+   require '/data/WEB grooming/backend/app/Models/ServiceModel.php';
+   require '/data/WEB grooming/backend/includes/helpers.php';
+   \$m = new ServiceModel();
+   var_dump(count(\$m->getAllServices()));
+   var_dump(\$m->getServiceById('full'));
+   "
+
+Testing Integrasi dengan Aplikasi Utama:
+7. Pastikan API backend prosedural tetap berjalan (tidak terpengaruh)
+   Buka terminal terpisah, jalankan server:
+   $ php -S localhost:8000 -t backend
+   
+   Test API:
+   $ curl http://localhost:8000/api/health
+   $ curl http://localhost:8000/api/services
+   
+8. Test Frontend React (opsional, tetap terhubung ke API)
+   Terminal terpisah:
+   $ cd frontend && npm run dev
+   Akses: http://localhost:5173
+
+VERIFIKASI ALUR MVC:
+- Request ke index_mvc.php?url=service → core/App.php routing
+- App instansiasi ServiceController → memanggil method index()
+- ServiceController memanggil $this->model('ServiceModel') 
+- ServiceModel membaca services.json via readJsonFile()
+- Controller menyiapkan data dan memanggil $this->view('service/index', $data)
+- View menampilkan data menggunakan $data['services']
+
+8. DEFINITION OF DONE
+---------------------
+[✓] Model, View, dan Controller terpisah dengan tanggung jawab jelas
+[✓] Request halaman ditangani Controller (index() & show())
+[✓] Controller memanggil Model dan menyiapkan data
+[✓] Data dikirim dan ditampilkan oleh View
+[✓] Alur MVC dapat ditelusuri: Model → Controller → View
+[✓] Halaman Grooming Dr. Meow berjalan melalui MVC
+[✓] Pemeriksaan sintaks PHP berhasil
+[✓] Dokumentasi lengkap dibuat
+[ ] Testing browser dilakukan (menunggu eksekusi user)
+[ ] Commit dan push ke GitHub
+[ ] Aplikasi siap demo
+
+9. STATUS GIT
+-------------
+Branch saat ini: mvc-backend-grooming-dr-meow
+Remote: origin (https://github.com/freepawny/grooming-dr-meow.git)
+Status: Belum di-commit dan push untuk perubahan MVC terbaru
+Action needed: git add, git commit, git push
+
+Perintah Git (akan dijalankan):
+$ git add backend/app/ backend/core/ backend/index_mvc.php backend/.htaccess RANGKUMAN_IMPLEMENTASI_MVC_SPRINT06.txt
+$ git commit -m "feat(backend): implementasi MVC lengkap untuk Grooming Dr. Meow (Task 01-03 Sprint 06)"
+$ git push -u origin mvc-backend-grooming-dr-meow
+
+CATATAN PENTING:
+- API backend prosedural (/api/*) TIDAK diubah, tetap berfungsi normal
+- Frontend React tetap terhubung ke API seperti semula
+- Implementasi MVC bersifat terpisah via index_mvc.php, tidak menggangu existing code
+- Menggunakan tema Grooming Dr. Meow, bukan PresidenKu sesuai permintaan

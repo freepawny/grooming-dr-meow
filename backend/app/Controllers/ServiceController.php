@@ -1,20 +1,59 @@
 <?php
+// app/Controllers/ServiceController.php
+// Controller untuk menangani request halaman layanan (MVC Task 02)
 
-require_once '../core/Controller.php';
+require_once __DIR__ . '/../../core/Controller.php';
 
 class ServiceController extends Controller
 {
-    public function index()
+    private $serviceModel;
+    
+    public function __construct()
     {
-        $serviceModel = $this->model('Service');
-        $services = $serviceModel->getAllServices();
-        $this->view('service/index', array('title' => 'Layanan Kami', 'services' => $services));
+        // Memanggil Model (Model-Controller Connection)
+        $this->serviceModel = $this->model('ServiceModel');
     }
     
-    public function show($id)
+    /**
+     * Method index - Menangani request untuk menampilkan semua layanan
+     */
+    public function index()
     {
-        $serviceModel = $this->model('Service');
-        $service = $serviceModel->getServiceById($id);
-        $this->view('service/show', array('title' => 'Detail Layanan', 'service' => $service));
+        // Mengambil data dari Model
+        $services = $this->serviceModel->getAllServices();
+        
+        // Menyiapkan data untuk View dan mengirim data (Controller-View Connection)
+        $data = array(
+            'title' => 'Layanan Kami - Grooming Dr. Meow',
+            'services' => $services,
+            'page' => 'service_list'
+        );
+        
+        // Mengarahkan ke View
+        $this->view('service/index', $data);
+    }
+    
+    /**
+     * Method show - Menangani request untuk menampilkan detail layanan
+     */
+    public function show($id = null)
+    {
+        if ($id === null) {
+            header('Location: /index_mvc.php?url=service');
+            exit;
+        }
+        
+        // Mengambil data dari Model berdasarkan ID
+        $service = $this->serviceModel->getServiceById($id);
+        
+        // Menyiapkan data untuk View
+        $data = array(
+            'title' => $service ? $service['name'] . ' - Grooming Dr. Meow' : 'Layanan Tidak Ditemukan',
+            'service' => $service,
+            'page' => 'service_detail'
+        );
+        
+        // Mengarahkan ke View
+        $this->view('service/show', $data);
     }
 }
